@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>1616672385673.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>Win_tip.qml</file>
+        <file>Win_tip.ui.qml</file>
+    </qresource>
+</RCC>
