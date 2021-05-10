@@ -6,11 +6,24 @@ black_ai::black_ai(QWidget *parent) :
     ui(new Ui::black_ai)
 {
     ui->setupUi(this);
+
+    exit= new QPushButton("返回主菜单",this);
+    exit->resize(80,40);
+    exit->move(450,300);
+
+    my_clean= new QPushButton("重新开始",this);
+    my_clean->resize(80,40);
+    my_clean->move(450,200);
 }
 
 void black_ai::paintEvent(QPaintEvent *)
 {
     QPainter painter( this);
+
+    connect(exit,&QPushButton::clicked,this,&black_ai::close);
+    connect(my_clean,&QPushButton::clicked,this,&black_ai::clean);
+
+
     //背景图片：
     painter.drawPixmap(0,0,600,450,QPixmap(":new/prefix1/1616672385673.png"));
 
@@ -2159,7 +2172,17 @@ int black_ai::white_rush_2(int x, int y)
     return re;
 }
 
-
+void black_ai::clean()
+{
+    for(int i=1;i<=21;i++)
+        for(int j=1;j<=21;j++)
+        {
+            mypieces_color[i][j]=0;
+        }
+    mypieces_color[11][11]=2;
+    mystep=1;
+    update();
+}
 
 
 

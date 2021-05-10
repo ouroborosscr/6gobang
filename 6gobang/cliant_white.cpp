@@ -8,7 +8,9 @@ cliant_white::cliant_white(QWidget *parent) :
     ui->setupUi(this);
 
 
-
+    exit= new QPushButton("返回主菜单",this);
+    exit->resize(80,40);
+    exit->move(450,300);
 
     tcpSocket=NULL;
 
@@ -112,6 +114,7 @@ void cliant_white::paintEvent(QPaintEvent *)
 {
     QPainter painter( this);
 
+    connect(exit,&QPushButton::clicked,this,&cliant_white::close);
 
     //背景图片：
     painter.drawPixmap(0,0,600,450,QPixmap(":new/prefix1/1616672385673.png"));

@@ -63,6 +63,8 @@ public:
 
     int x,y,x1,y1;
 
+    QPushButton *exit;
+
 
 private:
     Ui::cliant_black *ui;

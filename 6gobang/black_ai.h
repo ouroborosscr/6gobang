@@ -63,6 +63,10 @@ public:
 //    int black_rush_1(int x, int y);//1   ((((((a/4-1)/4-1)/2-2)/2-1)/4-4)/4-4)/4-4
     //规则：白棋进攻：下完这步棋后造成的影响；白棋防守：这个位置能防哪些种类(黑白调换）
 
+    void clean();
+    QPushButton *exit;
+    QPushButton *my_clean;
+
 private:
     Ui::black_ai *ui;
     QPainter *mypiece[22][22];

@@ -9,7 +9,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
 
+    exit= new QPushButton("返回主菜单",this);
+    exit->resize(80,40);
+    exit->move(450,300);
 
+    my_clean= new QPushButton("重新开始",this);
+    my_clean->resize(80,40);
+    my_clean->move(450,200);
 
 
 }
@@ -19,6 +25,9 @@ void MainWindow::paintEvent(QPaintEvent *)
 {
     QPainter painter( this);
 
+
+    connect(exit,&QPushButton::clicked,this,&MainWindow::close);
+    connect(my_clean,&QPushButton::clicked,this,&MainWindow::clean);
 
     //背景图片：
     painter.drawPixmap(0,0,600,450,QPixmap(":new/prefix1/1616672385673.png"));
@@ -227,6 +236,18 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 }
 
 void MainWindow::showEvent(QShowEvent* )
+{
+    for(int i=1;i<=21;i++)
+        for(int j=1;j<=21;j++)
+        {
+            mypieces_color[i][j]=0;
+            mypieces_live[i][j]=0;
+        }
+    mystep=0;
+    update();
+}
+
+void MainWindow::clean()
 {
     for(int i=1;i<=21;i++)
         for(int j=1;j<=21;j++)

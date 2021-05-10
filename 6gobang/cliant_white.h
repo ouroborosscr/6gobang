@@ -67,6 +67,8 @@ public:
 
     int x,y,x1,y1;
 
+    QPushButton *exit;
+
 private:
     Ui::cliant_white *ui;
     QPainter *mypiece[22][22];

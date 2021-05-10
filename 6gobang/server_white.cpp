@@ -7,6 +7,10 @@ server_white::server_white(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    exit= new QPushButton("返回主菜单",this);
+    exit->resize(80,40);
+    exit->move(450,300);
+
     tcpServer = NULL;
     tcpSocket = NULL;
 
@@ -129,7 +133,7 @@ void server_white::showEvent(QShowEvent* )
 void server_white::paintEvent(QPaintEvent *)
 {
     QPainter painter( this);
-
+    connect(exit,&QPushButton::clicked,this,&server_white::close);
 
     //背景图片：
     painter.drawPixmap(0,0,600,450,QPixmap(":new/prefix1/1616672385673.png"));

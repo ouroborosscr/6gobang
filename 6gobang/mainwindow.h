@@ -50,6 +50,11 @@ public:
     void clean();
 
 
+    QPushButton *exit;
+    QPushButton *my_clean;
+
+
+
 
 private:
     Ui::MainWindow *ui;

@@ -7,7 +7,13 @@ eve_ai::eve_ai(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    exit= new QPushButton("返回主菜单",this);
+    exit->resize(80,40);
+    exit->move(450,300);
 
+    my_clean= new QPushButton("重新开始",this);
+    my_clean->resize(80,40);
+    my_clean->move(450,200);
 
 
 }
@@ -19,6 +25,8 @@ eve_ai::~eve_ai()
 
 void eve_ai::paintEvent(QPaintEvent *)
 {
+    connect(exit,&QPushButton::clicked,this,&eve_ai::close);
+    connect(my_clean,&QPushButton::clicked,this,&eve_ai::clean);
 
 
     QPainter painter( this);
@@ -190,6 +198,18 @@ void eve_ai::showEvent(QShowEvent* )
     mystep=0;
     update();
 }
+
+void eve_ai::clean()
+{
+    for(int i=1;i<=21;i++)
+        for(int j=1;j<=21;j++)
+        {
+            mypieces_color[i][j]=0;
+        }
+    mystep=0;
+    update();
+}
+
 
 void eve_ai::closeEvent(QCloseEvent *)
 {

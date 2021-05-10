@@ -11,6 +11,11 @@ server_black::server_black(QWidget *parent) :
     tcpSocket = NULL;
 
 
+    exit= new QPushButton("返回主菜单",this);
+    exit->resize(80,40);
+    exit->move(450,300);
+
+
     //文本框，输入监听的端口
     port_inport=new QLineEdit("8888",this);
     port_inport->move(500,100);
@@ -117,7 +122,7 @@ void server_black::paintEvent(QPaintEvent *)
 {
     QPainter painter( this);
 
-
+    connect(exit,&QPushButton::clicked,this,&server_black::close);
     //背景图片：
     painter.drawPixmap(0,0,600,450,QPixmap(":new/prefix1/1616672385673.png"));
 
