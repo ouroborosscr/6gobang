@@ -1487,6 +1487,7 @@ int eve_ai::w_white_rush_4(int x, int y)
     //横
     for(int i=-4;i<=-1;i++)
     {
+        h=0;
         if((mypieces_color[x+i][y]==0&&mypieces_color[x+i+5][y]==1)||
            (mypieces_color[x+i][y]==1&&mypieces_color[x+i+5][y]==0))
             for(int j=1;j<=4;j++)
@@ -1499,9 +1500,10 @@ int eve_ai::w_white_rush_4(int x, int y)
                     break;
                 }
             }
+        if(h==4)
+            re+=97;
     }
-    if(h==4)
-        re+=97;
+
     //横（带空）
 
     for(int i=-5;i<=-1;i++)
@@ -1529,6 +1531,7 @@ int eve_ai::w_white_rush_4(int x, int y)
     //竖
     for(int i=-4;i<=-1;i++)
     {
+        s=0;
         if((mypieces_color[x][y+i]==0&&mypieces_color[x][y+i+5]==1)||
            (mypieces_color[x][y+i]==1&&mypieces_color[x][y+i+5]==0))
             for(int j=1;j<=4;j++)
@@ -1541,14 +1544,15 @@ int eve_ai::w_white_rush_4(int x, int y)
                     break;
                 }
             }
+        if(s==4)
+            re+=97;
     }
-    if(s==4)
-        re+=97;
+
     //竖（带空）
 
     for(int i=-5;i<=-1;i++)
     {
-        s=0;
+
         if(((mypieces_color[x][y+i]==0&&mypieces_color[x][y+i+6]==1)||
            (mypieces_color[x][y+i]==1&&mypieces_color[x][y+i+6]==0))&&
             mypieces_color[x][y+i+1]==2&&mypieces_color[x][y+i+5]==2)
@@ -1571,6 +1575,7 @@ int eve_ai::w_white_rush_4(int x, int y)
     //正斜
     for(int i=-4;i<=-1;i++)
     {
+        zx=0;
         if((mypieces_color[x+i][y+i]==0&&mypieces_color[x+i+5][y+i+5]==1)||
            (mypieces_color[x+i][y+i]==1&&mypieces_color[x+i+5][y+i+5]==0))
             for(int j=1;j<=4;j++)
@@ -1583,9 +1588,10 @@ int eve_ai::w_white_rush_4(int x, int y)
                     break;
                 }
             }
+        if(zx==4)
+            re+=97;
     }
-    if(zx==4)
-        re+=97;
+
     //正斜（带空）
 
     for(int i=-5;i<=-1;i++)
@@ -1614,6 +1620,7 @@ int eve_ai::w_white_rush_4(int x, int y)
 
     for(int i=-4;i<=-1;i++)
     {
+        fx=0;
         if((mypieces_color[x-i][y+i]==0&&mypieces_color[x-i-5][y+i+5]==1)||
            (mypieces_color[x-i][y+i]==1&&mypieces_color[x-i-5][y+i+5]==0))
             for(int j=1;j<=4;j++)
@@ -1626,9 +1633,10 @@ int eve_ai::w_white_rush_4(int x, int y)
                     break;
                 }
             }
+        if(fx==4)
+            re+=97;
     }
-    if(fx==4)
-        re+=97;
+
     //反斜（带空）
 
     for(int i=-5;i<=-1;i++)
@@ -1800,7 +1808,7 @@ int eve_ai::w_black_rush_3(int x, int y)
         }
     }
     if(fx==3&&w==k&&w==1)
-        re+=400;
+        re+=96;
 
     return re;
 
@@ -2007,62 +2015,43 @@ int eve_ai::w_white_rush_3(int x, int y)
 int eve_ai::w_white_live_2(int x, int y)
 {
     int re=0;
+
     //横
-    if(mypieces_color[x+1][y]==2&&
-       mypieces_color[x+2][y]==2&&
-       mypieces_color[x+3][y]==0)
+    if(mypieces_color[x-1][y]==0&&
+       mypieces_color[x+1][y]==2&&
+       mypieces_color[x+2][y]==0)
         re+=4;
-    else if(mypieces_color[x-1][y]==2&&
-            mypieces_color[x-2][y]==2&&
-            mypieces_color[x-3][y]==0)
-        re+=4;
-    else if(mypieces_color[x-2][y]==0&&
+    else if(mypieces_color[x+1][y]==0&&
             mypieces_color[x-1][y]==2&&
-            mypieces_color[x+1][y]==2&&
-            mypieces_color[x+2][y]==0)
+            mypieces_color[x-2][y]==0)
         re+=4;
 
     //竖
-    if(mypieces_color[x][y+1]==2&&
-       mypieces_color[x][y+2]==2&&
-       mypieces_color[x][y+3]==0)
+    if(mypieces_color[x][y-1]==0&&
+       mypieces_color[x][y+1]==2&&
+       mypieces_color[x][y+2]==0)
         re+=4;
-    else if(mypieces_color[x][y-1]==2&&
-            mypieces_color[x][y-2]==2&&
-            mypieces_color[x][y-3]==0)
-        re+=4;
-    else if(mypieces_color[x][y-2]==0&&
+    else if(mypieces_color[x][y+1]==0&&
             mypieces_color[x][y-1]==2&&
-            mypieces_color[x][y+1]==2&&
-            mypieces_color[x][y+2]==0)
+            mypieces_color[x][y-2]==0)
         re+=4;
 
     //正斜
-    if(mypieces_color[x+1][y+1]==2&&
-       mypieces_color[x+2][y+2]==2&&
-       mypieces_color[x+3][y+3]==0)
+    if(mypieces_color[x-1][y-1]==0&&
+       mypieces_color[x+1][y+1]==2&&
+       mypieces_color[x+2][y+2]==0)
         re+=4;
-    else if(mypieces_color[x-1][y-1]==2&&
-            mypieces_color[x-2][y-2]==2&&
-            mypieces_color[x-3][y-3]==0)
-        re+=4;
-    else if(mypieces_color[x-2][y-2]==0&&
+    else if(mypieces_color[x+1][y+1]==0&&
             mypieces_color[x-1][y-1]==2&&
-            mypieces_color[x+1][y+1]==2&&
-            mypieces_color[x+2][y+2]==0)
+            mypieces_color[x-2][y-2]==0)
         re+=4;
 
     //反斜
-    if(mypieces_color[x-1][y+1]==2&&
-       mypieces_color[x-2][y+2]==2&&
-       mypieces_color[x-3][y+3]==0)
+    if(mypieces_color[x-1][y+1]==0&&
+       mypieces_color[x+1][y-1]==2&&
+       mypieces_color[x+2][y-2]==0)
         re+=4;
-    else if(mypieces_color[x+1][y-1]==2&&
-            mypieces_color[x+2][y-2]==2&&
-            mypieces_color[x+3][y-3]==0)
-        re+=4;
-    else if(mypieces_color[x+2][y-2]==0&&
-            mypieces_color[x+1][y-1]==2&&
+    else if(mypieces_color[x+1][y-1]==0&&
             mypieces_color[x-1][y+1]==2&&
             mypieces_color[x-2][y+2]==0)
         re+=4;
@@ -2168,41 +2157,41 @@ int eve_ai::w_white_rush_2(int x, int y)
     if(((mypieces_color[x-1][y]==1&&mypieces_color[x+2][y]==0)||
         (mypieces_color[x-1][y]==0&&mypieces_color[x+2][y]==1))&&
        mypieces_color[x+1][y]==2)
-        re+=4;
+        re+=1;
     else if(((mypieces_color[x+1][y]==1&&mypieces_color[x-2][y]==0)||
              (mypieces_color[x+1][y]==0&&mypieces_color[x-2][y]==1))&&
             mypieces_color[x-1][y]==2)
-        re+=4;
+        re+=1;
 
     //竖
     if(((mypieces_color[x][y-1]==1&&mypieces_color[x][y+2]==0)||
         (mypieces_color[x][y-1]==0&&mypieces_color[x][y+2]==1))&&
        mypieces_color[x][y+1]==2)
-        re+=4;
+        re+=1;
     else if(((mypieces_color[x][y+1]==1&&mypieces_color[x][y-2]==0)||
              (mypieces_color[x][y+1]==0&&mypieces_color[x][y-2]==1))&&
             mypieces_color[x][y-1]==2)
-        re+=4;
+        re+=1;
 
     //正斜
     if(((mypieces_color[x-1][y-1]==1&&mypieces_color[x+2][y+2]==0)||
         (mypieces_color[x-1][y-1]==0&&mypieces_color[x+2][y+2]==1))&&
        mypieces_color[x+1][y+1]==2)
-        re+=4;
+        re+=1;
     else if(((mypieces_color[x+1][y+1]==1&&mypieces_color[x-2][y-2]==0)||
              (mypieces_color[x+1][y+1]==0&&mypieces_color[x-2][y-2]==1))&&
             mypieces_color[x-1][y-1]==2)
-        re+=4;
+        re+=1;
 
     //反斜
     if(((mypieces_color[x+1][y-1]==1&&mypieces_color[x-2][y+2]==0)||
         (mypieces_color[x+1][y-1]==0&&mypieces_color[x-2][y+2]==1))&&
        mypieces_color[x-1][y+1]==2)
-        re+=4;
+        re+=1;
     else if(((mypieces_color[x-1][y+1]==1&&mypieces_color[x+2][y-2]==0)||
              (mypieces_color[x-1][y+1]==0&&mypieces_color[x+2][y-2]==1))&&
             mypieces_color[x+1][y-1]==2)
-        re+=4;
+        re+=1;
 
 
 
@@ -3055,7 +3044,10 @@ int eve_ai::b_black_rush_4(int x, int y)
         }
     }
     if(h==4&&w==k&&w==1)
+    {
+//        qDebug()<<"h";
         re+=400;
+    }
 
     //竖
     w=0;k=0;
@@ -3090,8 +3082,10 @@ int eve_ai::b_black_rush_4(int x, int y)
         }
     }
     if(s==4&&w==k&&w==1)
+    {
+//        qDebug()<<"s";
         re+=400;
-
+    }
     //正斜
     w=0;k=0;
     for(int i=1;i<=5;i++)
@@ -3125,14 +3119,19 @@ int eve_ai::b_black_rush_4(int x, int y)
         }
     }
     if(zx==4&&w==k&&w==1)
+    {
+//        qDebug()<<"zx";
         re+=400;
-
+    }
     //反斜
     w=0;k=0;
     for(int i=1;i<=5;i++)
     {
         if(mypieces_color[x-i][y+i]==2)
+        {
             fx++;
+//            qDebug()<<"("<<x-i<<","<<y+i<<")"<<fx;
+        }
         else if(mypieces_color[x-i][y+i]==0)
         {
             k++;
@@ -3147,7 +3146,10 @@ int eve_ai::b_black_rush_4(int x, int y)
     for(int i=-1;i>=-5;i--)
     {
         if(mypieces_color[x-i][y+i]==2)
+        {
             fx++;
+//            qDebug()<<"("<<x-i<<","<<y+i<<")"<<fx;
+        }
         else if(mypieces_color[x-i][y+i]==0)
         {
             k++;
@@ -3160,8 +3162,10 @@ int eve_ai::b_black_rush_4(int x, int y)
         }
     }
     if(fx==4&&w==k&&w==1)
+    {
+//        qDebug()<<"("<<x<<","<<y<<")";
         re+=400;
-
+    }
     return re;
 }
 int eve_ai::b_white_live_4(int x, int y)
@@ -3488,6 +3492,7 @@ int eve_ai::b_white_rush_4(int x, int y)
     //横
     for(int i=-4;i<=-1;i++)
     {
+        h=0;
         if((mypieces_color[x+i][y]==0&&mypieces_color[x+i+5][y]==2)||
            (mypieces_color[x+i][y]==2&&mypieces_color[x+i+5][y]==0))
             for(int j=1;j<=4;j++)
@@ -3500,9 +3505,12 @@ int eve_ai::b_white_rush_4(int x, int y)
                     break;
                 }
             }
+        if(h==4)
+        {//qDebug()<<"h";
+            re+=97;
+        }
     }
-    if(h==4)
-        re+=97;
+
     //横（带空）
 
     for(int i=-5;i<=-1;i++)
@@ -3523,13 +3531,16 @@ int eve_ai::b_white_rush_4(int x, int y)
                 }
             }
         if(h==4)
+        {//qDebug()<<"h";
             re+=97;
+        }
     }
 
 
     //竖
     for(int i=-4;i<=-1;i++)
     {
+        s=0;
         if((mypieces_color[x][y+i]==0&&mypieces_color[x][y+i+5]==2)||
            (mypieces_color[x][y+i]==2&&mypieces_color[x][y+i+5]==0))
             for(int j=1;j<=4;j++)
@@ -3542,9 +3553,12 @@ int eve_ai::b_white_rush_4(int x, int y)
                     break;
                 }
             }
+        if(s==4)
+        {//qDebug()<<"s";
+            re+=97;
+        }
     }
-    if(s==4)
-        re+=97;
+
     //竖（带空）
 
     for(int i=-5;i<=-1;i++)
@@ -3565,13 +3579,16 @@ int eve_ai::b_white_rush_4(int x, int y)
                 }
             }
         if(s==4)
+        {//qDebug()<<"s";
             re+=97;
+        }
     }
 
 
     //正斜
     for(int i=-4;i<=-1;i++)
     {
+        zx=0;
         if((mypieces_color[x+i][y+i]==0&&mypieces_color[x+i+5][y+i+5]==2)||
            (mypieces_color[x+i][y+i]==2&&mypieces_color[x+i+5][y+i+5]==0))
             for(int j=1;j<=4;j++)
@@ -3584,9 +3601,12 @@ int eve_ai::b_white_rush_4(int x, int y)
                     break;
                 }
             }
+        if(zx==4)
+        {//qDebug()<<"zx";
+            re+=97;
+        }
     }
-    if(zx==4)
-        re+=97;
+
     //正斜（带空）
 
     for(int i=-5;i<=-1;i++)
@@ -3607,7 +3627,9 @@ int eve_ai::b_white_rush_4(int x, int y)
                 }
             }
         if(zx==4)
+        {//qDebug()<<"zx";
             re+=97;
+        }
     }
 
 
@@ -3615,21 +3637,34 @@ int eve_ai::b_white_rush_4(int x, int y)
 
     for(int i=-4;i<=-1;i++)
     {
+        fx=0;
         if((mypieces_color[x-i][y+i]==0&&mypieces_color[x-i-5][y+i+5]==2)||
            (mypieces_color[x-i][y+i]==2&&mypieces_color[x-i-5][y+i+5]==0))
+        {
+//            qDebug()<<"("<<x-i<<","<<y+i<<")";
+//            qDebug()<<"("<<x-i-5<<","<<y+i+5<<")";
+
             for(int j=1;j<=4;j++)
             {
                 if(mypieces_color[x-i-j][y-i-j]==1)
+                {
                     fx++;
+//                    qDebug()<<"("<<x-i-j<<","<<x-i-j<<")"<<fx;
+                }
                 else if(mypieces_color[x-i-j][y-i-j]==2)
                 {
                     fx=0;
                     break;
                 }
             }
+        }
+        if(fx==4)
+        {//qDebug()<<"fx1";
+//            qDebug()<<"("<<x<<","<<y<<")";
+            re+=97;
+        }
     }
-    if(fx==4)
-        re+=97;
+
     //反斜（带空）
 
     for(int i=-5;i<=-1;i++)
@@ -3650,7 +3685,9 @@ int eve_ai::b_white_rush_4(int x, int y)
                 }
             }
         if(fx==4)
+        {//qDebug()<<"fx2";
             re+=97;
+        }
     }
 
 
@@ -3801,7 +3838,7 @@ int eve_ai::b_black_rush_3(int x, int y)
         }
     }
     if(fx==3&&w==k&&w==1)
-        re+=400;
+        re+=96;
 
     return re;
 
@@ -3829,7 +3866,7 @@ int eve_ai::b_white_live_3(int x, int y)
 
     //竖
     if(mypieces_color[x][y-3]==0&&
-       mypieces_color[x][y-2]==1&
+       mypieces_color[x][y-2]==1&&
        mypieces_color[x][y-1]==1&&
        mypieces_color[x][y+1]==0)
         re+=23;
@@ -3949,56 +3986,56 @@ int eve_ai::b_white_rush_3(int x, int y)
     int re=0;
     //直接列
     //横
-    if(((mypieces_color[x-3][y]==0&&mypieces_color[x+1][y]==1)||(mypieces_color[x-3][y]==2&&mypieces_color[x+1][y]==0))&&
+    if(((mypieces_color[x-3][y]==0&&mypieces_color[x+1][y]==2)||(mypieces_color[x-3][y]==2&&mypieces_color[x+1][y]==0))&&
        mypieces_color[x-2][y]==1&&
        mypieces_color[x-1][y]==1)
         re+=21;
-    else if(((mypieces_color[x+3][y]==0&&mypieces_color[x-1][y]==1)||(mypieces_color[x+3][y]==2&&mypieces_color[x-1][y]==0))&&
+    else if(((mypieces_color[x+3][y]==0&&mypieces_color[x-1][y]==2)||(mypieces_color[x+3][y]==2&&mypieces_color[x-1][y]==0))&&
        mypieces_color[x+2][y]==1&&
        mypieces_color[x+1][y]==1)
         re+=21;
-    else if(((mypieces_color[x-2][y]==0&&mypieces_color[x+2][y]==1)||(mypieces_color[x-2][y]==2&&mypieces_color[x+2][y]==0))&&
+    else if(((mypieces_color[x-2][y]==0&&mypieces_color[x+2][y]==2)||(mypieces_color[x-2][y]==2&&mypieces_color[x+2][y]==0))&&
        mypieces_color[x-1][y]==1&&
        mypieces_color[x+1][y]==1)
         re+=21;
 
     //竖
-    if(((mypieces_color[x][y-3]==0&&mypieces_color[x][y+1]==1)||(mypieces_color[x][y-3]==2&&mypieces_color[x][y+1]==0))&&
+    if(((mypieces_color[x][y-3]==0&&mypieces_color[x][y+1]==2)||(mypieces_color[x][y-3]==2&&mypieces_color[x][y+1]==0))&&
        mypieces_color[x][y-2]==1&&
        mypieces_color[x][y-1]==1)
         re+=21;
-    else if(((mypieces_color[x][y+3]==0&&mypieces_color[x][y-1]==1)||(mypieces_color[x][y+3]==2&&mypieces_color[x][y-1]==0))&&
+    else if(((mypieces_color[x][y+3]==0&&mypieces_color[x][y-1]==2)||(mypieces_color[x][y+3]==2&&mypieces_color[x][y-1]==0))&&
        mypieces_color[x][y+2]==1&&
        mypieces_color[x][y+1]==1)
         re+=21;
-    else if(((mypieces_color[x][y-2]==0&&mypieces_color[x][y+2]==1)||(mypieces_color[x][y-2]==2&&mypieces_color[x][y+2]==0))&&
+    else if(((mypieces_color[x][y-2]==0&&mypieces_color[x][y+2]==2)||(mypieces_color[x][y-2]==2&&mypieces_color[x][y+2]==0))&&
        mypieces_color[x][y-1]==1&&
        mypieces_color[x][y+1]==1)
         re+=21;
     //正斜
-    if(((mypieces_color[x-3][y-3]==0&&mypieces_color[x+1][y+1]==1)||(mypieces_color[x-3][y-3]==2&&mypieces_color[x+1][y+1]==0))&&
+    if(((mypieces_color[x-3][y-3]==0&&mypieces_color[x+1][y+1]==2)||(mypieces_color[x-3][y-3]==2&&mypieces_color[x+1][y+1]==0))&&
        mypieces_color[x-2][y-2]==1&&
        mypieces_color[x-1][y-1]==1)
         re+=21;
-    else if(((mypieces_color[x+3][y+3]==0&&mypieces_color[x-1][y-1]==1)||(mypieces_color[x+3][y+3]==2&&mypieces_color[x-1][y-1]==0))&&
+    else if(((mypieces_color[x+3][y+3]==0&&mypieces_color[x-1][y-1]==2)||(mypieces_color[x+3][y+3]==2&&mypieces_color[x-1][y-1]==0))&&
        mypieces_color[x+2][y+2]==1&&
        mypieces_color[x+1][y+1]==1)
         re+=21;
-    else if(((mypieces_color[x-2][y-2]==0&&mypieces_color[x+2][y+2]==1)||(mypieces_color[x-2][y-2]==2&&mypieces_color[x+2][y+2]==0))&&
+    else if(((mypieces_color[x-2][y-2]==0&&mypieces_color[x+2][y+2]==2)||(mypieces_color[x-2][y-2]==2&&mypieces_color[x+2][y+2]==0))&&
        mypieces_color[x-1][y-1]==1&&
        mypieces_color[x+1][y+1]==1)
         re+=21;
 
     //反斜
-    if(((mypieces_color[x+3][y-3]==0&&mypieces_color[x-1][y+1]==1)||(mypieces_color[x+3][y-3]==2&&mypieces_color[x-1][y+1]==0))&&
+    if(((mypieces_color[x+3][y-3]==0&&mypieces_color[x-1][y+1]==2)||(mypieces_color[x+3][y-3]==2&&mypieces_color[x-1][y+1]==0))&&
        mypieces_color[x+2][y-2]==1&&
        mypieces_color[x+1][y-1]==1)
         re+=21;
-    else if(((mypieces_color[x-3][y+3]==0&&mypieces_color[x+1][y-1]==1)||(mypieces_color[x-3][y+3]==2&&mypieces_color[x+1][y-1]==0))&&
+    else if(((mypieces_color[x-3][y+3]==0&&mypieces_color[x+1][y-1]==2)||(mypieces_color[x-3][y+3]==2&&mypieces_color[x+1][y-1]==0))&&
        mypieces_color[x-2][y+2]==1&&
        mypieces_color[x-1][y+1]==1)
         re+=21;
-    else if(((mypieces_color[x+2][y-2]==0&&mypieces_color[x-2][y+2]==1)||(mypieces_color[x+2][y-2]==2&&mypieces_color[x-2][y+2]==0))&&
+    else if(((mypieces_color[x+2][y-2]==0&&mypieces_color[x-2][y+2]==2)||(mypieces_color[x+2][y-2]==2&&mypieces_color[x-2][y+2]==0))&&
        mypieces_color[x+1][y-1]==1&&
        mypieces_color[x-1][y+1]==1)
         re+=21;
@@ -4009,61 +4046,41 @@ int eve_ai::b_white_live_2(int x, int y)
 {
     int re=0;
     //横
-    if(mypieces_color[x+1][y]==1&&
-       mypieces_color[x+2][y]==1&&
-       mypieces_color[x+3][y]==0)
+    if(mypieces_color[x-1][y]==0&&
+       mypieces_color[x+1][y]==1&&
+       mypieces_color[x+2][y]==0)
         re+=4;
-    else if(mypieces_color[x-1][y]==1&&
-            mypieces_color[x-2][y]==1&&
-            mypieces_color[x-3][y]==0)
-        re+=4;
-    else if(mypieces_color[x-2][y]==0&&
+    else if(mypieces_color[x+1][y]==0&&
             mypieces_color[x-1][y]==1&&
-            mypieces_color[x+1][y]==1&&
-            mypieces_color[x+2][y]==0)
+            mypieces_color[x-2][y]==0)
         re+=4;
 
     //竖
-    if(mypieces_color[x][y+1]==1&&
-       mypieces_color[x][y+2]==1&&
-       mypieces_color[x][y+3]==0)
+    if(mypieces_color[x][y-1]==0&&
+       mypieces_color[x][y+1]==1&&
+       mypieces_color[x][y+2]==0)
         re+=4;
-    else if(mypieces_color[x][y-1]==1&&
-            mypieces_color[x][y-2]==1&&
-            mypieces_color[x][y-3]==0)
-        re+=4;
-    else if(mypieces_color[x][y-2]==0&&
+    else if(mypieces_color[x][y+1]==0&&
             mypieces_color[x][y-1]==1&&
-            mypieces_color[x][y+1]==1&&
-            mypieces_color[x][y+2]==0)
+            mypieces_color[x][y-2]==0)
         re+=4;
 
     //正斜
-    if(mypieces_color[x+1][y+1]==1&&
-       mypieces_color[x+2][y+2]==1&&
-       mypieces_color[x+3][y+3]==0)
+    if(mypieces_color[x-1][y-1]==0&&
+       mypieces_color[x+1][y+1]==1&&
+       mypieces_color[x+2][y+2]==0)
         re+=4;
-    else if(mypieces_color[x-1][y-1]==1&&
-            mypieces_color[x-2][y-2]==1&&
-            mypieces_color[x-3][y-3]==0)
-        re+=4;
-    else if(mypieces_color[x-2][y-2]==0&&
+    else if(mypieces_color[x+1][y+1]==0&&
             mypieces_color[x-1][y-1]==1&&
-            mypieces_color[x+1][y+1]==1&&
-            mypieces_color[x+2][y+2]==0)
+            mypieces_color[x-2][y-2]==0)
         re+=4;
 
     //反斜
-    if(mypieces_color[x-1][y+1]==1&&
-       mypieces_color[x-2][y+2]==1&&
-       mypieces_color[x-3][y+3]==0)
+    if(mypieces_color[x-1][y+1]==0&&
+       mypieces_color[x+1][y-1]==1&&
+       mypieces_color[x+2][y-2]==0)
         re+=4;
-    else if(mypieces_color[x+1][y-1]==1&&
-            mypieces_color[x+2][y-2]==1&&
-            mypieces_color[x+3][y-3]==0)
-        re+=4;
-    else if(mypieces_color[x+2][y-2]==0&&
-            mypieces_color[x+1][y-1]==1&&
+    else if(mypieces_color[x+1][y-1]==0&&
             mypieces_color[x-1][y+1]==1&&
             mypieces_color[x-2][y+2]==0)
         re+=4;
@@ -4169,41 +4186,41 @@ int eve_ai::b_white_rush_2(int x, int y)
     if(((mypieces_color[x-1][y]==2&&mypieces_color[x+2][y]==0)||
         (mypieces_color[x-1][y]==0&&mypieces_color[x+2][y]==2))&&
        mypieces_color[x+1][y]==1)
-        re+=4;
+        re+=1;
     else if(((mypieces_color[x+1][y]==2&&mypieces_color[x-2][y]==0)||
              (mypieces_color[x+1][y]==0&&mypieces_color[x-2][y]==2))&&
             mypieces_color[x-1][y]==1)
-        re+=4;
+        re+=1;
 
     //竖
     if(((mypieces_color[x][y-1]==2&&mypieces_color[x][y+2]==0)||
         (mypieces_color[x][y-1]==0&&mypieces_color[x][y+2]==2))&&
        mypieces_color[x][y+1]==1)
-        re+=4;
+        re+=1;
     else if(((mypieces_color[x][y+1]==2&&mypieces_color[x][y-2]==0)||
              (mypieces_color[x][y+1]==0&&mypieces_color[x][y-2]==2))&&
             mypieces_color[x][y-1]==1)
-        re+=4;
+        re+=1;
 
     //正斜
     if(((mypieces_color[x-1][y-1]==2&&mypieces_color[x+2][y+2]==0)||
         (mypieces_color[x-1][y-1]==0&&mypieces_color[x+2][y+2]==2))&&
        mypieces_color[x+1][y+1]==1)
-        re+=4;
+        re+=1;
     else if(((mypieces_color[x+1][y+1]==2&&mypieces_color[x-2][y-2]==0)||
              (mypieces_color[x+1][y+1]==0&&mypieces_color[x-2][y-2]==2))&&
             mypieces_color[x-1][y-1]==1)
-        re+=4;
+        re+=1;
 
     //反斜
     if(((mypieces_color[x+1][y-1]==2&&mypieces_color[x-2][y+2]==0)||
         (mypieces_color[x+1][y-1]==0&&mypieces_color[x-2][y+2]==2))&&
        mypieces_color[x-1][y+1]==1)
-        re+=4;
+        re+=1;
     else if(((mypieces_color[x-1][y+1]==2&&mypieces_color[x+2][y-2]==0)||
              (mypieces_color[x-1][y+1]==0&&mypieces_color[x+2][y-2]==2))&&
             mypieces_color[x+1][y-1]==1)
-        re+=4;
+        re+=1;
 
 
 
